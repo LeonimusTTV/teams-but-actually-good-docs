@@ -26,11 +26,17 @@
     "tabs": [
       {
         "tab": "Guides",
-        "groups": [
+        "pages": [
+          "index",
+          {
+            "group": "Installation",
+            "pages": [
+              "desktop"
+            ]
+          },
           {
             "group": "Getting started",
             "pages": [
-              "index",
               "quickstart",
               "development"
             ]
