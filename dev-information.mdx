@@ -65,6 +65,18 @@ Same thing as build, but will also make the manifest.json compatible with firefo
 bun run build:firefox
 ```
 
+Zip the extension for Chrome
+
+```bash
+bun run build:ext
+```
+
+Zip the extension for Firefox
+
+```bash
+bun run build:ext:firefox
+```
+
 This command is like the "nodemon" but for this projet, when a change is detected, it'll build, make the extension reload (to take in count the new injection.js file) and reload the page too (can be managed on the extension)
 
 <Info>
