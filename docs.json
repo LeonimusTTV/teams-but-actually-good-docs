@@ -31,7 +31,16 @@
           {
             "group": "Installation",
             "pages": [
-              "desktop"
+              "desktop",
+              "extension",
+              "dev-setup"
+            ]
+          },
+          {
+            "group": "Usage",
+            "pages": [
+              "usage",
+              "dev-usage"
             ]
           },
           {

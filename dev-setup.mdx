@@ -1,0 +1,68 @@
+---
+title: "Dev Setup"
+---
+
+Here you'll have a simple tutorial and how to install Teams but (actually) good.
+
+<Info>
+  Installing NodeJS is not mandatory, but it's recommended, bun can work without NodeJS
+</Info>
+
+<Steps>
+  <Step title="Install NodeJs">
+    Go to the [NodeJS](https://nodejs.org/en/download) website, select your operating system and follow the steps on the website
+
+    <Frame>
+      ![Node Installation](/images/node-installation.jpg)
+    </Frame>
+  </Step>
+  <Step title="Check if NodeJS works">
+    Open your Terminal and run this command, it should return the nodejs version (need to be 22 or more)
+
+    ```bash
+    node --version
+    ```
+  </Step>
+  <Step title="Install bun">
+    Teams but (actually) good uses [bun](https://bun.com/), so you need to do the same :)
+
+    Go to the [bun website](https://bun.com/) command the command for your operating system (should be the one already selected) and past it in your terminal
+
+    <Frame>
+      ![Bun Installation](/images/bun-installation.jpg)
+    </Frame>
+  </Step>
+  <Step title="Check bun's version">
+    Open your Terminal and run this command, it should return the bun version
+
+    ```bash
+    bun --version
+    ```
+  </Step>
+  <Step title="Install git">
+    Now go to the [git website](https://git-scm.com/install/), select your operating system and follow the step to insall git, you don't need to understand the install option, you can mostly just next all the time and git will be installed on your pc
+  </Step>
+  <Step title="Clone the repo">
+    Now we can clone the repo, to do that go into a folder where you wanna store the project in your terminal, and then run this command
+
+    ```bash
+    git clone https://github.com/LeonimusTTV/teams-but-good.git
+    ```
+  </Step>
+  <Step title="Open project">
+    Now open the folder on your code editor, [vscode](https://code.visualstudio.com/download) is good enough for that
+  </Step>
+  <Step title="Install the dependencies">
+    In the root folder of the project, run this command in your terminal
+
+    ```bash
+    bun install
+    ```
+  </Step>
+</Steps>
+
+Now the setup is finished, to continue go check the usage
+
+<Card icon="sparkles" horizontal href="/desktop" title="Usage">
+  
+</Card>
