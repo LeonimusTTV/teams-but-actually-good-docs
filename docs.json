@@ -9,20 +9,6 @@
   },
   "favicon": "/favicon.svg",
   "navigation": {
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "icon": "book-open-cover",
-          "href": "https://mintlify.com/docs"
-        },
-        {
-          "anchor": "Blog",
-          "icon": "newspaper",
-          "href": "https://mintlify.com/blog"
-        }
-      ]
-    },
     "tabs": [
       {
         "tab": "Guides",
@@ -31,6 +17,7 @@
           "usage",
           {
             "group": "Installation",
+            "icon": "download",
             "pages": [
               "desktop",
               "extension",
@@ -39,8 +26,9 @@
           },
           {
             "group": "Developpers",
+            "icon": "computer-classic",
             "pages": [
-              "dev-usage",
+              "dev-information",
               "dev-extension",
               "plugins",
               "themes"
