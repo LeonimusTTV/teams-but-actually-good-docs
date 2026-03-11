@@ -28,6 +28,7 @@
         "tab": "Guides",
         "pages": [
           "index",
+          "usage",
           {
             "group": "Installation",
             "pages": [
@@ -37,62 +38,12 @@
             ]
           },
           {
-            "group": "Usage",
+            "group": "Developpers",
             "pages": [
-              "usage",
-              "dev-usage"
-            ]
-          },
-          {
-            "group": "Getting started",
-            "pages": [
-              "quickstart",
-              "development"
-            ]
-          },
-          {
-            "group": "Customization",
-            "pages": [
-              "essentials/settings",
-              "essentials/navigation"
-            ]
-          },
-          {
-            "group": "Writing content",
-            "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
-            ]
-          },
-          {
-            "group": "AI tools",
-            "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "API reference",
-        "hidden": true,
-        "groups": [
-          {
-            "group": "API documentation",
-            "pages": [
-              "api-reference/introduction"
-            ]
-          },
-          {
-            "group": "Endpoint examples",
-            "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "dev-usage",
+              "dev-extension",
+              "plugins",
+              "themes"
             ]
           }
         ]
