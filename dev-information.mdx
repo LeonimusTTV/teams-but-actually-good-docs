@@ -15,6 +15,9 @@ Here you can have a good look on the important folder and what they contain
   <Accordion title="extension">
     all the files related to the extension itself, as well as the injection.js (won't show if not build for the first time)
   </Accordion>
+  <Accordion title="safari-extension">
+    the safari extension xcode project
+  </Accordion>
   <Accordion title="scripts">
     this is where the dev.ts (for the watch) and the generate all files are located, more could be added along the way
   </Accordion>
@@ -59,22 +62,40 @@ Used to build the "injection.js" file, that file contains the whole code for Tea
 bun run build
 ```
 
-Same thing as build, but will also make the manifest.json compatible with firefox (needed because chrome manifest is not the same as firefox's manifest)
-
-```bash
-bun run build:firefox
-```
-
 Zip the extension for Chrome
 
 ```bash
 bun run build:ext
 ```
 
+Same thing as build, but will also make the manifest.json compatible with firefox (needed because chrome manifest is not the same as firefox's manifest)
+
+```bash
+bun run build:firefox
+```
+
 Zip the extension for Firefox
 
 ```bash
 bun run build:ext:firefox
+```
+
+Used on the extension and update the manifest.json
+
+```bash
+bun run build:safari
+```
+
+Update the safari-extension project
+
+```bash
+bun run build:ext:safari
+```
+
+Will generate the plugins and themes files, as well as generating the injection.js itself, this is the command that will actually do that job
+
+```bash
+bun run build:base
 ```
 
 This command is like the "nodemon" but for this projet, when a change is detected, it'll build, make the extension reload (to take in count the new injection.js file) and reload the page too (can be managed on the extension)
