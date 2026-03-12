@@ -4,7 +4,7 @@ icon: "info"
 ---
 
 <Tip>
-  Be sure to have follow the [dev setup](/dev-setup) before following theses steps
+  Be sure to have follow the [dev setup](/dev-setup) before following these steps
 </Tip>
 
 ## File Structure
@@ -21,10 +21,10 @@ Here you can have a good look on the important folder and what they contain
   <Accordion title="src">
     all Teams but (actually) good files
   </Accordion>
-  <Accordion title="src/teams-plugin">
-    here reside all the official plugin
+  <Accordion title="src/teams-plugins">
+    here reside all the official plugins
   </Accordion>
-  <Accordion title="src/user-plugin (must be created)">
+  <Accordion title="src/user-plugins (must be created)">
     here reside all your custom plugin / unofficial ones, keep in mind that ones added like that might not work when Teams updates
   </Accordion>
   <Accordion title="src/themes">
@@ -39,7 +39,7 @@ Here you can have a good look on the important folder and what they contain
 
 There's different commands you can do with bun that will build (extension / app) / launch the app or watch to help you dev the extension easier
 
-Geneate "plugin-registry" and "theme-registry", this is very important, as if your plugin / theme is not in one of that file, it won't load it, and if thoses 2 files don't exist, Teams but (actually) good wont launch either, to generate them you must run this command (automatically done if running other build commands)
+Generate "plugin-registry" and "theme-registry", this is very important, as if your plugin / theme is not in one of that file, it won't load it, and if those 2 files don't exist, Teams but (actually) good wont launch either, to generate them you must run this command (automatically done if running other build commands)
 
 <Frame>
   ![Plugin Registry And Theme Registry](/images/plugin-registry-and-theme-registry.jpg)
