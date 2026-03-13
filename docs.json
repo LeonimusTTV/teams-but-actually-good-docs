@@ -7,7 +7,7 @@
     "light": "#22d3ee",
     "dark": "#0891b2"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/images/tbag-logo-notext.ico",
   "navigation": {
     "tabs": [
       {
@@ -39,8 +39,8 @@
     ]
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/images/tbag-logo-horizental.png",
+    "dark": "/images/tbag-logo-horizental.png"
   },
   "navbar": {
     "links": [
