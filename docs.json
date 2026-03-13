@@ -38,10 +38,7 @@
       }
     ]
   },
-  "logo": {
-    "light": "/images/tbag-logo-horizental-croped.png",
-    "dark": "/images/tbag-logo-horizental-croped.png"
-  },
+  "logo": "/images/tbag-logo-horizental-croped.png",
   "navbar": {
     "links": [
       {
