@@ -108,20 +108,32 @@ This command is like the "nodemon" but for this projet, when a change is detecte
 bun run watch
 ```
 
-Build the Tauri app in release mode (won't build the injection.js)
+Used for Tauri related commands
 
 ```bash
 bun run tauri
 ```
 
-Same as the one above, but in dev mode
+Build Tauri in dev mode
 
 ```bash
 bun run tauri:dev
+```
+
+Build Tauri in release mode
+
+```bash
+bun run tauri:release
 ```
 
 Build the Tauri app in dev mode, includes the build of injection.js
 
 ```bash
 bun run dev
+```
+
+Same as above, but for release
+
+```bash
+bun run release
 ```
