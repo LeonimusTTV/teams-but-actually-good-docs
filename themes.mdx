@@ -3,4 +3,64 @@ title: "Themes"
 icon: "window-maximize"
 ---
 
-TODO
+Here you'll have a full tutorial on how to make a theme for Teams but (actually) good.
+
+<Info>
+  If you want to make your own custom theme, it's better to use Teams but (actually) good custom theme system so you don't have to build the extension all the time to see the changes (or watch but it does the same thing).
+
+  <Frame>
+    ![Tbag Themes Custom Themes](/images/tbag-themes-custom-themes.jpg)
+  </Frame>
+</Info>
+
+Here is an example of a theme:
+
+```css
+/**
+ * @name Test Name
+ * @author LeonimusT
+ * @version 0.0.1
+ * @description Test description.
+ * @source https://github.com
+ * @website https://leonimust.com
+ */
+
+.fui-FluentProvider,
+[class*="fui-FluentProvider"] {
+  --backgroundCanvas: #1cbf52 !important;
+}
+
+#ms-searchux-input {
+  background-color: #ffffff !important;
+}
+```
+
+In the comments you've different information.
+
+<AccordionGroup>
+  <Accordion title="@name">
+    The name of the theme
+  </Accordion>
+
+  <Accordion title="@author (optional)">
+    The author of the theme, you basically
+  </Accordion>
+
+  <Accordion title="@version">
+    A simple version, e.g. 1.0.1
+  </Accordion>
+
+  <Accordion title="@description (optional)">
+    Small description
+  </Accordion>
+
+  <Accordion title="@source (optional)">
+    Your GitHub, GitLab or something else... Basically where the theme is hosted
+  </Accordion>
+
+  <Accordion title="@website (optional)">
+    Your website, portfolio or something similar
+  </Accordion>
+</AccordionGroup>
+
+Now we got into the css, it's basically just css, all css elements are available, no restriction about that. In here we won't speak on how CSS works, it's not the goal of this code, for that you've this [CSS Tutorial](https://www.w3schools.com/Css/) from W3School
