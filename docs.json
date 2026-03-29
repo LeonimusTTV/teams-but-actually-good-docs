@@ -64,15 +64,16 @@
      "vscode"
    ]
   },
-  "footer": {
-    "socials": {
-      "github": "https://github.com/mintlify"
-    }
-  },
   "seo": {
     "indexing": "all"
   },
   "appearance": {
     "default": "system"
+  },
+  "integrations": {
+    "plausible": {
+      "domain": "plausible.leonimust.com",
+      "server": "teamsbutactuallygood-docs"
+    }
   }
 }
