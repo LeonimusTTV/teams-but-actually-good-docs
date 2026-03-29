@@ -72,8 +72,8 @@
   },
   "integrations": {
     "plausible": {
-      "domain": "plausible.leonimust.com",
-      "server": "teamsbutactuallygood-docs"
+      "domain": "docs.teamsbutactuallygood.dev",
+      "server": "plausible.leonimust.com"
     }
   }
 }
