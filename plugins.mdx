@@ -1,18 +1,269 @@
 ---
 title: "Plugins"
-icon: "plug"
 ---
 
-Here you'll have a full tutorial on how to make a plugin for Teams but (actually) good
-
-Firstly something to know is that you shouldn't add your plugins in "src/teams-plugins", since this folder is reserved to official plugin, you should therefore create your own folder called "user-plugins" in "src" ("src/user-plugins"), and here you can work on your plugins
-
-<Note>
-  Plugins must have either a "index.ts" or a "index.tsx", this is the entry point of the plugin
-</Note>
+Here you'll have a full tutorial on how to make a plugin for Teams but (actually) good.
 
 <Info>
-  If you're lost or don't know how to do something, don't hesistate to check on the official plugins works, that might help you a lot
+  If you're lost or don't know how to do something, don't hesitate to check how the official plugins work, that might help you a lot
 </Info>
 
-TODO
+## Setup
+
+You shouldn't add your plugins in `src/teams-plugins`, since this folder is reserved for official plugins. Instead, create your own folder called `user-plugins` in `src` (`src/user-plugins`), and work on your plugins there.
+
+Each plugin must have either an `index.ts` or an `index.tsx` as its entry point, and must export the plugin object as default:
+
+```ts
+export default myPlugin;
+```
+
+TBAG will handle the rest automatically.
+
+## Plugin structure
+
+Here is the full interface of a plugin:
+
+```ts
+interface Plugin {
+  name: string;
+  description?: string;
+  author?: Author | Author[];
+  enableByDefault?: boolean;
+  patches: Patch[];
+  mainEntry?: () => void;
+  onChangeObserved?: () => void;
+  settingsDef?: SettingsDefinition;
+  // You can also add your own properties and methods here
+  [key: string]: any;
+}
+
+type Author = {
+  name: string;
+  profileAvatarUrl?: string;
+  socialMediaUrl?: string;
+};
+```
+
+<AccordionGroup>
+  <Accordion title="name">
+    The name of the plugin. Must be unique.
+  </Accordion>
+
+  <Accordion title="description (optional)">
+    A short description of what the plugin does, shown in the settings UI.
+  </Accordion>
+
+  <Accordion title="author (optional)">
+    The author(s) of the plugin. Can be a single `Author` object or an array of them. Each author can have a `name`, a `profileAvatarUrl` and a `socialMediaUrl`.
+  </Accordion>
+
+  <Accordion title="enableByDefault (optional)">
+    Used to enable plugins by default, official, non essential plugin won't have this enable. You can always use this for your custom plugins.
+  </Accordion>
+
+  <Accordion title="patches">
+    An array of patches to apply to Teams' webpack modules. Can be an empty array if the plugin doesn't need to patch anything. See the [Patches](#patches) section for more info.
+  </Accordion>
+
+  <Accordion title="mainEntry (optional)">
+    A function called on every `DOMContentLoaded` event (i.e. on every page navigation in Teams). Useful for plugins that don't need to patch anything but still need to run code.
+  </Accordion>
+
+  <Accordion title="onChangeObserved (optional)">
+    A function called when a DOM change is observed.
+  </Accordion>
+
+  <Accordion title="settingsDef (optional)">
+    Defines the settings of the plugin. Used by the UI to render the settings controls. See the [Settings](#settings) section for more info.
+  </Accordion>
+</AccordionGroup>
+
+## Simple plugin example
+
+Here is a simple plugin that only uses `mainEntry`, without any patches:
+
+```ts
+const Telemetry: Plugin = {
+  name: "Telemetry",
+  description: "Block telemetry and analytics requests.",
+  patches: [],
+  mainEntry: blockTelemetry,
+  enableByDefault: true,
+};
+
+export default Telemetry;
+```
+
+## Patches
+
+Patches let you modify Teams' internal webpack modules at runtime. A patch has a `find` to locate the module, and a `replacement` array to modify it.
+
+```ts
+interface Patch {
+  find: string | RegExp;
+  replacement: {
+    match: RegExp;
+    replace: string;
+  }[];
+}
+```
+
+- `find`: a `string` or `RegExp` used to identify the target webpack module in Teams' bundle
+- `replacement`: one or more `{ match, replace }` pairs applied to the matched module. `match` must be a `RegExp`, and `replace` is a string (supports capture groups like `$1`, `$2`...)
+
+<Tip>
+  You can use `$self` in your `replace` string to reference the plugin object itself. This is the only way to call plugin methods from within a patch, functions defined outside the plugin object won't be accessible.
+</Tip>
+
+<Warning>
+  To find the right `find` and `match` values, you need to inspect Teams' minified bundle using React DevTools and your browser's dev tools. This is an advanced topic, we recommend looking for existing tutorials on patching webpack modules.
+</Warning>
+
+Here is an example of a plugin using patches:
+
+```tsx
+const betterAppBar: Plugin = {
+  name: "BetterAppBar",
+  description: "Shows only selected channels in the channel list.",
+
+  filterChannels(items: any[]): any[] {
+    const selected: string[] = Array.isArray(this.settings?.selectedChannels)
+      ? (this.settings.selectedChannels as string[])
+      : [];
+
+    if (selected.length === 0) return items;
+
+    return items.filter((item: any) => selected.includes(String(item?.key)));
+  },
+
+  patches: [
+    {
+      find: /children:\w+,id:\w+,items:\w+,strategy:\w+=\w+/,
+      replacement: [
+        {
+          match: /(let\{children:(\w+),id:\w+,items:\w+,strategy:\w+=\w+,disabled:\w+=!1\}=\w+;)/,
+          replace: "$1if($2?.props?.children?.[0]&&Array.isArray($2.props.children[0])){$2.props.children[0]=$self.filterChannels($2.props.children[0]);}",
+        },
+      ],
+    },
+  ],
+};
+
+export default betterAppBar;
+```
+
+## Settings
+
+You can define settings for your plugin using `settingsDef`. TBAG will automatically render the corresponding controls in the settings UI. The current values are available at runtime via `this.settings`.
+
+If a setting has `restartNeeded: true`, a restart button will appear in the UI when the user changes that setting.
+
+Here are all the available setting types:
+
+<AccordionGroup>
+  <Accordion title="OptionType.BOOLEAN">
+    A simple toggle switch.
+
+    ```typescript
+        myToggle: {
+          type: OptionType.BOOLEAN,
+          description: "Enable something",
+          default: true,
+        }
+    ```
+  </Accordion>
+
+  <Accordion title="OptionType.STRING">
+    A text input. Can be multiline.
+
+    ```typescript
+        myText: {
+          type: OptionType.STRING,
+          description: "Enter some text",
+          default: "hello",
+          multiline: false,
+        }
+    ```
+  </Accordion>
+
+  <Accordion title="OptionType.NUMBER">
+    A number input.
+
+    ```typescript
+        myNumber: {
+          type: OptionType.NUMBER,
+          description: "Enter a number",
+          default: 42,
+        }
+    ```
+  </Accordion>
+
+  <Accordion title="OptionType.BIGINT">
+    Same as NUMBER but for BigInt values.
+  </Accordion>
+
+  <Accordion title="OptionType.SELECT">
+    A dropdown with predefined options.
+
+    ```typescript
+        mySelect: {
+          type: OptionType.SELECT,
+          description: "Pick one",
+          options: [
+            { label: "Option A", value: "a", default: true },
+            { label: "Option B", value: "b" },
+          ],
+        }
+    ```
+  </Accordion>
+
+  <Accordion title="OptionType.SLIDER">
+    A slider with defined markers.
+
+    ```typescript
+        mySlider: {
+          type: OptionType.SLIDER,
+          description: "Pick a value",
+          markers: [0, 25, 50, 75, 100],
+          default: 50,
+          stickToMarkers: true,
+        }
+    ```
+  </Accordion>
+
+  <Accordion title="OptionType.COMPONENT">
+    Renders a custom React component as the setting control. The component receives `setValue`, `value`, `option` and `ReactLib` (Teams' React instance) as props.
+
+    ```tsx
+        myComponent: {
+          type: OptionType.COMPONENT,
+          component: ({ value, setValue, ReactLib }) => {
+            const [val, setVal] = ReactLib.useState(value ?? "");
+            return ReactLib.createElement("input", {
+              value: val,
+              onChange: (e: any) => { setVal(e.target.value); setValue(e.target.value); }
+            });
+          },
+          default: "",
+          restartNeeded: true,
+        }
+    ```
+  </Accordion>
+
+  <Accordion title="OptionType.CUSTOM">
+    For storing arbitrary values that don't fit any other type, without rendering any UI control.
+  </Accordion>
+</AccordionGroup>
+
+All setting types (except `COMPONENT` and `CUSTOM`) also support these common fields:
+
+```ts
+interface PluginSettingCommon {
+  description: string;
+  placeholder?: string;
+  onChange?(newValue: any): void;
+  restartNeeded?: boolean;
+  hidden?: boolean;
+}
+```

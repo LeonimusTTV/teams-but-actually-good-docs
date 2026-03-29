@@ -42,7 +42,7 @@ Here you can have a good look on the important folder and what they contain
 
 There's different commands you can do with bun that will build (extension / app) / launch the app or watch to help you dev the extension easier
 
-Generate "plugin-registry" and "theme-registry", this is very important, as if your plugin / theme is not in one of that file, it won't load it, and if those 2 files don't exist, Teams but (actually) good wont launch either, to generate them you must run this command (automatically done if running other build commands)
+Generate `plugin-registry` and `theme-registry`, this is very important, as if your plugin / theme is not in one of that file, it won't load it, and if those 2 files don't exist, Teams but (actually) good wont launch either, to generate them you must run this command (automatically done if running other build commands)
 
 <Frame>
   ![Plugin Registry And Theme Registry](/images/plugin-registry-and-theme-registry.jpg)
@@ -52,7 +52,7 @@ Generate "plugin-registry" and "theme-registry", this is very important, as if y
 bun run generate
 ```
 
-This command is like the "nodemon" but for this projet, when a change is detected, it'll build, make the extension reload (to take in count the new injection.js file) and reload the page too (can be managed on the extension)
+This command is like the `nodemon` but for this projet, when a change is detected, it'll build, make the extension reload (to take in count the new injection.js file) and reload the page too (can be managed on the extension)
 
 <Info>
   More info about how to use the extension in the [extension page](/dev-extension)
@@ -68,7 +68,7 @@ Used for Tauri related commands
 bun run tauri
 ```
 
-Used to build the "injection.js" file, that file contains the whole code for Teams but (actually) good, without it, there's no Teams but (actually) good, that command will create that file and put it inside the "dist" and "extension" folder to be used by the Tauri app and the extension
+Used to build the `injection.js` file, that file contains the whole code for Teams but (actually) good, without it, there's no Teams but (actually) good, that command will create that file and put it inside the `dist` and `extension` folder to be used by the Tauri app and the extension
 
 <Frame>
   ![Injection Js In Dist And Extension](/images/injection.js-in-dist-and-extension.jpg)
