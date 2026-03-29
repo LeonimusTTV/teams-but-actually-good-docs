@@ -43,14 +43,9 @@
     "links": [
       {
         "label": "Issues",
-        "href": "https://github.com"
+        "href": "https://github.com/LeonimusTTV/teams-but-actually-good/issues/new?template=bug_report.yml"
       }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
-    }
+    ]
   },
   "contextual": {
     "options": [
