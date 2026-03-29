@@ -40,12 +40,12 @@
   },
   "logo": "/images/tbag-logo-horizental-croped.png",
   "navbar": {
-    "links": [
-      {
-        "label": "Issues",
-        "href": "https://github.com/LeonimusTTV/teams-but-actually-good/issues/new?template=bug_report.yml"
-      }
-    ]
+    "links": [],
+    "primary": {
+      "type": "button",
+      "label": "Issues",
+      "href": "https://github.com/LeonimusTTV/teams-but-actually-good/issues/new?template=bug_report.yml"
+    }
   },
   "contextual": {
     "options": [
