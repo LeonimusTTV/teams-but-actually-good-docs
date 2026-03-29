@@ -60,7 +60,7 @@ type Author = {
   </Accordion>
 
   <Accordion title="enableByDefault (optional)">
-    Used to enable plugins by default, official, non essential plugin won't have this enable. You can always use this for your custom plugins.
+    Used to enable plugins by default. Official non-essential plugin won't use this, but you're free to use it for your own plugins.
   </Accordion>
 
   <Accordion title="patches">
@@ -167,11 +167,11 @@ Here are all the available setting types:
     A simple toggle switch.
 
     ```typescript
-        myToggle: {
-          type: OptionType.BOOLEAN,
-          description: "Enable something",
-          default: true,
-        }
+    myToggle: {
+      type: OptionType.BOOLEAN,
+      description: "Enable something",
+      default: true,
+    }
     ```
   </Accordion>
 
@@ -179,12 +179,12 @@ Here are all the available setting types:
     A text input. Can be multiline.
 
     ```typescript
-        myText: {
-          type: OptionType.STRING,
-          description: "Enter some text",
-          default: "hello",
-          multiline: false,
-        }
+    myText: {
+      type: OptionType.STRING,
+      description: "Enter some text",
+      default: "hello",
+      multiline: false,
+    }
     ```
   </Accordion>
 
@@ -192,11 +192,11 @@ Here are all the available setting types:
     A number input.
 
     ```typescript
-        myNumber: {
-          type: OptionType.NUMBER,
-          description: "Enter a number",
-          default: 42,
-        }
+    myNumber: {
+      type: OptionType.NUMBER,
+      description: "Enter a number",
+      default: 42,
+    }
     ```
   </Accordion>
 
@@ -208,14 +208,14 @@ Here are all the available setting types:
     A dropdown with predefined options.
 
     ```typescript
-        mySelect: {
-          type: OptionType.SELECT,
-          description: "Pick one",
-          options: [
-            { label: "Option A", value: "a", default: true },
-            { label: "Option B", value: "b" },
-          ],
-        }
+    mySelect: {
+      type: OptionType.SELECT,
+      description: "Pick one",
+      options: [
+        { label: "Option A", value: "a", default: true },
+        { label: "Option B", value: "b" },
+      ],
+    }
     ```
   </Accordion>
 
@@ -223,13 +223,13 @@ Here are all the available setting types:
     A slider with defined markers.
 
     ```typescript
-        mySlider: {
-          type: OptionType.SLIDER,
-          description: "Pick a value",
-          markers: [0, 25, 50, 75, 100],
-          default: 50,
-          stickToMarkers: true,
-        }
+    mySlider: {
+      type: OptionType.SLIDER,
+      description: "Pick a value",
+      markers: [0, 25, 50, 75, 100],
+      default: 50,
+      stickToMarkers: true,
+    }
     ```
   </Accordion>
 
@@ -237,18 +237,18 @@ Here are all the available setting types:
     Renders a custom React component as the setting control. The component receives `setValue`, `value`, `option` and `ReactLib` (Teams' React instance) as props.
 
     ```tsx
-        myComponent: {
-          type: OptionType.COMPONENT,
-          component: ({ value, setValue, ReactLib }) => {
-            const [val, setVal] = ReactLib.useState(value ?? "");
-            return ReactLib.createElement("input", {
-              value: val,
-              onChange: (e: any) => { setVal(e.target.value); setValue(e.target.value); }
-            });
-          },
-          default: "",
-          restartNeeded: true,
-        }
+    myComponent: {
+      type: OptionType.COMPONENT,
+      component: ({ value, setValue, ReactLib }) => {
+        const [val, setVal] = ReactLib.useState(value ?? "");
+        return ReactLib.createElement("input", {
+          value: val,
+          onChange: (e: any) => { setVal(e.target.value); setValue(e.target.value); }
+        });
+      },
+      default: "",
+      restartNeeded: true,
+    }
     ```
   </Accordion>
 
