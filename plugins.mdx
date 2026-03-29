@@ -15,7 +15,11 @@ You shouldn't add your plugins in `src/teams-plugins`, since this folder is rese
 
 Each plugin must have either an `index.ts` or an `index.tsx` as its entry point, and must export the plugin object as default:
 
-```ts
+<Warning>
+  Your plugin **must** be in a folder. This is **right**: `src/user-plugins/your-plugin/index.ts`. This is **wrong**: `src/user-plugins/index.ts`
+</Warning>
+
+```typescript
 export default myPlugin;
 ```
 
@@ -25,7 +29,7 @@ TBAG will handle the rest automatically.
 
 Here is the full interface of a plugin:
 
-```ts
+```typescript
 interface Plugin {
   name: string;
   description?: string;
@@ -84,7 +88,7 @@ type Author = {
 
 Here is a simple plugin that only uses `mainEntry`, without any patches:
 
-```ts
+```typescript
 const Telemetry: Plugin = {
   name: "Telemetry",
   description: "Block telemetry and analytics requests.",
@@ -100,7 +104,7 @@ export default Telemetry;
 
 Patches let you modify Teams' internal webpack modules at runtime. A patch has a `find` to locate the module, and a `replacement` array to modify it.
 
-```ts
+```typescript
 interface Patch {
   find: string | RegExp;
   replacement: {
@@ -259,7 +263,7 @@ Here are all the available setting types:
 
 All setting types (except `COMPONENT` and `CUSTOM`) also support these common fields:
 
-```ts
+```typescript
 interface PluginSettingCommon {
   description: string;
   placeholder?: string;
