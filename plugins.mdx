@@ -39,8 +39,6 @@ interface Plugin {
   mainEntry?: () => void;
   onChangeObserved?: () => void;
   settingsDef?: SettingsDefinition;
-  // You can also add your own properties and methods here
-  [key: string]: any;
 }
 
 type Author = {
@@ -49,6 +47,28 @@ type Author = {
   socialMediaUrl?: string;
 };
 ```
+
+<Info>
+  If you need to add custom properties or methods to your plugin object, extend the `Plugin` interface instead of relying on index signatures:
+
+  ```typescript
+    interface MyPlugin extends Plugin {
+      myCustomProperty: string;
+      myCustomMethod(arg: string): void;
+    }
+  
+    const myPlugin: MyPlugin = {
+      name: "MyPlugin",
+      patches: [],
+      myCustomProperty: "hello",
+      myCustomMethod(arg) { /* ... */ },
+    };
+  
+    export default myPlugin;
+  ```
+</Info>
+
+Explanation of each properties
 
 <AccordionGroup>
   <Accordion title="name">
@@ -125,21 +145,25 @@ interface Patch {
   To find the right `find` and `match` values, you need to inspect Teams' minified bundle using React DevTools and your browser's dev tools. This is an advanced topic, we recommend checking out this [Vencord plugin guide](https://gist.github.com/sunnniee/28bd595f8c07992f6d03289911289ba8) which covers the same patching concepts.
 </Warning>
 
-Here is an example of a plugin using patches:
+Here is an example of a plugin using patches and a custom extended Plugin interface:
 
 ```tsx
-const betterAppBar: Plugin = {
+interface BetterAppBarPlugin extends Plugin {
+  filterChannels(items: { key: string }[]): { key: string }[];
+}
+
+const betterAppBar: BetterAppBarPlugin = {
   name: "BetterAppBar",
   description: "Shows only selected channels in the channel list.",
 
-  filterChannels(items: any[]): any[] {
+  filterChannels(items: { key: string }[]) {
     const selected: string[] = Array.isArray(this.settings?.selectedChannels)
       ? (this.settings.selectedChannels as string[])
       : [];
 
     if (selected.length === 0) return items;
 
-    return items.filter((item: any) => selected.includes(String(item?.key)));
+    return items.filter((item) => selected.includes(String(item?.key)));
   },
 
   patches: [
