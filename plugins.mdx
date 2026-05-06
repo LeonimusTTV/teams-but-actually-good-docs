@@ -52,19 +52,19 @@ type Author = {
   If you need to add custom properties or methods to your plugin object, extend the `Plugin` interface instead of relying on index signatures:
 
   ```typescript
-    interface MyPlugin extends Plugin {
-      myCustomProperty: string;
-      myCustomMethod(arg: string): void;
-    }
-  
-    const myPlugin: MyPlugin = {
-      name: "MyPlugin",
-      patches: [],
-      myCustomProperty: "hello",
-      myCustomMethod(arg) { /* ... */ },
-    };
-  
-    export default myPlugin;
+  interface MyPlugin extends Plugin {
+    myCustomProperty: string;
+    myCustomMethod(arg: string): void;
+  }
+    
+  const myPlugin: MyPlugin = {
+    name: "MyPlugin",
+    patches: [],
+    myCustomProperty: "hello",
+    myCustomMethod(arg) { /* ... */ },
+  };
+    
+  export default myPlugin;
   ```
 </Info>
 
