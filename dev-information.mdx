@@ -4,7 +4,7 @@ icon: "info"
 ---
 
 <Tip>
-  Be sure to have follow the [dev setup](/dev-setup) before following these steps
+  Be sure to have followed the [dev setup](/dev-setup) before starting to dev on TBAG
 </Tip>
 
 ## File Structure
@@ -15,24 +15,31 @@ Here you can have a good look on the important folder and what they contain
   <Accordion title="extension">
     all the files related to the extension itself, as well as the injection.js (won't show if not build for the first time)
   </Accordion>
+
   <Accordion title="safari-extension">
     the safari extension xcode project
   </Accordion>
+
   <Accordion title="scripts">
     this is where the dev.ts (for the watch) and the generate all files are located, more could be added along the way
   </Accordion>
+
   <Accordion title="src">
     all Teams but (actually) good files
   </Accordion>
+
   <Accordion title="src/teams-plugins">
     here reside all the official plugins
   </Accordion>
+
   <Accordion title="src/user-plugins (must be created)">
     here reside all your custom plugin / unofficial ones, keep in mind that ones added like that might not work when Teams updates
   </Accordion>
+
   <Accordion title="src/themes">
     here reside all the themes
   </Accordion>
+
   <Accordion title="src-tauri">
     all the files related to tauri, no need to touch them
   </Accordion>
@@ -40,9 +47,9 @@ Here you can have a good look on the important folder and what they contain
 
 ## Commands
 
-There's different commands you can do with bun that will build (extension / app) / launch the app or watch to help you dev the extension easier
+There's different commands you can run with bun that will, for example: build the extension / launch the app or watch (like nodemon) to help you dev on the extension easier
 
-Generate `plugin-registry` and `theme-registry`, this is very important, as if your plugin / theme is not in one of that file, it won't load it, and if those 2 files don't exist, Teams but (actually) good wont launch either, to generate them you must run this command (automatically done if running other build commands)
+Generating `plugin-registry` and `theme-registry` is very important. If your plugin(s) / theme(s) are not in one of those files, TBAG won't load them and if those 2 files don't exist, TBAG wont launch itself either. To generate them you must run this command (automatically done if running other build commands, so don't worry to much about it)
 
 <Frame>
   ![Plugin Registry And Theme Registry](/images/plugin-registry-and-theme-registry.jpg)
@@ -52,7 +59,7 @@ Generate `plugin-registry` and `theme-registry`, this is very important, as if y
 bun run generate
 ```
 
-This command is like the `nodemon` but for this projet, when a change is detected, it'll build, make the extension reload (to take in count the new injection.js file) and reload the page too (can be managed on the extension)
+This command is like a `nodemon` but made for this projet, when a change is detected, it'll build the new `injection.js` file, make the extension reload itself (to take in count the new injection.js file) and if enable on the extension, reload the page
 
 <Info>
   More info about how to use the extension in the [extension page](/dev-extension)

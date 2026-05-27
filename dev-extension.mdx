@@ -3,6 +3,10 @@ title: "Extension"
 icon: "browser"
 ---
 
+<Tip>
+  Be sure to have followed the [dev setup](/dev-setup) before starting to dev on TBAG
+</Tip>
+
 Here you'll have all the information you need to be able develop the with the extension
 
 Firstly you'll need to download [Chrome](https://www.google.com/intl/fr/chrome/)
@@ -17,31 +21,36 @@ Now in your terminal run this command
 bun run watch
 ```
 
-After running it you should see Chrome open automatically, that's a good sign, now go to the `Settings` and `Extension` like the screenshot under
+After running it, you should see Chrome open automatically, that's a good sign, now go to the `Settings` and `Extension` like the screenshot under
 
 <Frame>
-  ![Chrome Extension](/images/chrome-extension..jpg)
+  <img
+    src="/images/chrome-manage-extension.jpg"
+    alt="Chrome Extension"
+    lightAlt="Chrome Extension"
+    darkAlt="Chrome Extension"
+  />
 </Frame>
 
-Now enable the `Developer mod`
+Now enable the `Developer mode`
 
 <Frame>
-  ![Chrome Devmod Extension](/images/chrome-devmod-extension.jpg)
+  ![Chrome Devmod Extension](/images/chrome-enable-devmode.jpg)
 </Frame>
 
-And press the `Load unpacked extension`, navigate to the extension path and open it, it should look like that
+And press the `Load unpacked`, navigate to the extension path and select it, when that's done the extension should open you the doc and Teams' website
 
 <Frame>
-  ![Chrome Extension List](/images/chrome-extension-list.jpg)
+  ![Chrome Extension List](/images/chrome-load-unpacked-extension.jpg)
 </Frame>
 
-Now open the extension and enable the `Developer Mode`
+Now, connect yourself to your Teams account, once that's done open the extension and enable the `Developer Mode`, you can choose to enable or disable the `Auto-reload on build`, which will automatically reload Teams' page when the `watch script` detects a change.
 
 <Frame>
-  ![Extension Open](/images/extension-open.jpg)
+  ![Extension Open](/images/chrome-extension-devmode.jpg)
 </Frame>
 
-Now go on [Teams](https://teams.microsoft.com) and you should be able to see Teams but (actually) good in the settings like showed in [Usage](/usage)
+A quick refresh of the page and TBAG should be working.
 
 <Tip>
   Don't forget to install [React DevTools](https://chromewebstore.google.com/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi) to work on plugins, it'll be useful when you make React path for your plugins
