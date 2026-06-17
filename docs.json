@@ -15,6 +15,7 @@
         "pages": [
           "index",
           "usage",
+          "sync",
           "faq",
           {
             "group": "Installation",
